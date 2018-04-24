@@ -33,6 +33,7 @@
 [circle hell]: circle_hell.gif
 [best run 1]: best_run_lucky_pick_up.png
 [best run 2]: best_run_luckiest_pick_up.png
+[image3] : example_rock1.jpg
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
@@ -85,7 +86,8 @@ upper=(100, 255, 255)
 </table></center>
 
 For a first test, I will use the calibration image given as follow :
-<center>![Rock sample picture][image3]</center>
+
+![Rock sample picture][image3]
 
 Here are the differents results using RGB space - _on the left_, and HSV color space - _on the right_. As we can see, the first method **barely** succeded to detect the golden rock, whereas, the second one did it with more success.
 
@@ -140,17 +142,13 @@ Here I am only going to describe the data world map update, since the other stat
 
 As suggested in [_Optimizing Map Fidelity Tip_](https://classroom.udacity.com/nanodegrees/nd209/parts/c199593e-1e9a-4830-8e29-2c86f70f489e/modules/0573f9ff-2e23-48cd-87d0-af24d758348a/lessons/ef841d31-8c53-49b3-8da3-a9d1523adef0/concepts/ed33ab6f-2b67-4991-b372-ab915538b734), the map is only updated if both **pitch** and **roll** are under 0.8° or above 359.2°. This helps with the accuracy. Bellow are two differents mapping, the one on the left is obtained without taking care of the pitch and roll angle.
 
-<center>
 ![roll and pitch mapping][roll_pitch]
-</center>
 
 We can see that there is not that much data lost appart from the obstacles - _which are not that relevant_ and that the naviguable terrain is more accurate.
 
 As said in [RoboND Rover Project Livestream](https://www.youtube.com/watch?v=-L0Fz4UnlC8) the **further** data is captured from the rover, the less accurate it is. Only points that are within a short range are therefore updated. Bellow are two differents mapping with the distance threshold, the one on the left is obtained without taking care of the pitch and roll angle.
 
-<center>
 ![distance thresholding][distance_thresh]
-</center>
 
 We can observe that the distance threshold helps a lot with the accuracy, yet, **relevant data was lost** at that price.
 
@@ -212,9 +210,8 @@ When the rover face a small obstacle, the mean angle could leads him straight to
 
 If we sum up all the columns to get a 1D array, in a normal situation we get a [**gaussian distribution**](http://mathworld.wolfram.com/NormalDistribution.html) - _blue curve bellow_ . So if we are able to get the center of the estimated gaussian, we can then check is the value is greater than the mean value. If not, it obvioulsy means that we are not at a maximum as expected. The _red curve_ shows what we could expect in a split way situation.
 
-<center>
+
 ![gaussian]
-</center>
 
 The algorithm chosen to detect this scenario roughly estimates the center of the gaussian, using threshold.
 
@@ -403,9 +400,7 @@ if Rover.near_sample and Rover.vel == 0 and \
 
 This _unbearable scenario_ has not yet been dealt with...
 
-<center>
 ![circle hell]
-</center>
 
 #### 3. Results 
 
