@@ -1,4 +1,4 @@
-![udacity logo](./misc/udacity_logo.png)
+![udacity logo](udacity_logo.png)
 # Project: Search and Sample Return
 ### Vincent FORTINEAU, R&D Engineer at ALPhANOV, Bordeaux, France
 
@@ -6,9 +6,9 @@
 ---
 
 
-##Goals and steps of the project
+## Goals and steps of the project
 
-###Training / Calibration  
+### Training / Calibration  
 
 * Download the simulator and take data in "Training Mode"
 * Test out the functions in the Jupyter Notebook provided
@@ -16,7 +16,7 @@
 * Fill in the `process_image()` function with the appropriate image processing steps (perspective transform, color threshold etc.) to get from raw images to a map.  The `output_image` you create in this step should demonstrate that your mapping pipeline works.
 * Use `moviepy` to process the images in your saved dataset with the `process_image()` function.  Include the video you produce as part of your submission.
 
-###Autonomous Navigation / Mapping
+### Autonomous Navigation / Mapping
 
 * Fill in the `perception_step()` function within the `perception.py` script with the appropriate image processing functions to create a map and update `Rover()` data (similar to what you did with `process_image()` in the notebook). 
 * Fill in the `decision_step()` function within the `decision.py` script with conditional statements that take into consideration the outputs of the `perception_step()` in deciding how to issue throttle, brake and steering commands. 
@@ -24,19 +24,17 @@
 
 [//]: # (Image References)
 
-[rgb_hsv_rock_detect]: ./misc/rock_detection_RGB_HSV.png
-[rgb_obstacle_detect]: ./misc/obstacle_detection_RGB.png
-[roll_pitch]: ./misc/mapping_pitch_roll_vs.jpg
-[distance_thresh]: ./misc/mapping_pitch_vs_distance.jpg
-[split ways]: ./misc/rover_front_obstacle.png
-[gaussian]: ./misc/gaussian.png
-[circle hell]: ./misc/circle_hell.gif
-[best run 1]: ./misc/best_run_lucky_pick_up.png
-[best run 2]: ./misc/best_run_luckiest_pick_up.png
-[image2]: ./calibration_images/example_grid1.jpg
-[image3]: ./calibration_images/example_rock1.jpg 
+[rgb_hsv_rock_detect]: rock_detection_RGB_HSV.png
+[rgb_obstacle_detect]: obstacle_detection_RGB.png
+[roll_pitch]: mapping_pitch_roll_vs.jpg
+[distance_thresh]: mapping_pitch_vs_distance.jpg
+[split ways]: rover_front_obstacle.png
+[gaussian]: gaussian.png
+[circle hell]: circle_hell.gif
+[best run 1]: best_run_lucky_pick_up.png
+[best run 2]: best_run_luckiest_pick_up.png
 
-####[Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
+#### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
 ## Summary
 
@@ -45,19 +43,19 @@
 ###### Rock Detection
 ###### Obstacle Detection
 ##### 2. Identification of navigable terrain, obstacles and rock samples 
-######Data world map update
+###### Data world map update
 ### Autonomous Navigation and Mapping
 ##### 1. Perception
 ###### Data worldmap update
 ###### Polar coordinates
 ###### Rock position
-######Split way detection
-#####2. Autonomous decision making
-######Stuck Scenarios
-######Obstacle avoidance
-######Wall crawler
-######Smoothing the steering
-######Golden rock search and pick up
+###### Split way detection
+##### 2. Autonomous decision making
+###### Stuck Scenarios
+###### Obstacle avoidance
+###### Wall crawler
+###### Smoothing the steering
+###### Golden rock search and pick up
 ### Results
 
 ## Notebook Analysis
@@ -136,7 +134,7 @@ Then I followed the basic given states :
 * Data world map update
 * Display
 
-#####Data world map update
+##### Data world map update
 
 Here I am only going to describe the data world map update, since the other states where pretty much straight forward.
 
