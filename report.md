@@ -87,7 +87,7 @@ upper=(100, 255, 255)
 
 For a first test, I will use the calibration image given as follow :
 
-![Rock sample picture][image3]
+![image3]
 
 Here are the differents results using RGB space - _on the left_, and HSV color space - _on the right_. As we can see, the first method **barely** succeded to detect the golden rock, whereas, the second one did it with more success.
 
