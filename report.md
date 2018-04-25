@@ -402,7 +402,7 @@ This _unbearable scenario_ has not yet been dealt with...
 
 ![circle hell]
 
-#### 3. Results <a name="part3"></a>
+## Results <a name="part3"></a>
 
 Most of the time, the rover will be able to get a **single or two rocks within 600s**. With an average FPS between 2 and 3, I guess the rover is not reactive enough, and my rock search algorithm is not really efficient.
 
