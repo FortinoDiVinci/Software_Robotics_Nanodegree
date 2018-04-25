@@ -37,31 +37,31 @@
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
-## Summary
+## Table of Contents
 
-### Notebook Analysis
-##### 1. Color selection of obstacles and rock samples
-###### Rock Detection
-###### Obstacle Detection
-##### 2. Identification of navigable terrain, obstacles and rock samples 
-###### Data world map update
-### Autonomous Navigation and Mapping
-##### 1. Perception
-###### Data worldmap update
-###### Polar coordinates
-###### Rock position
-###### Split way detection
-##### 2. Autonomous decision making
-###### Stuck Scenarios
-###### Obstacle avoidance
-###### Wall crawler
-###### Smoothing the steering
-###### Golden rock search and pick up
-### Results
+* [Notebook Analysis](#part1)
+	* [1. Color selection](#1-1)
+		* [Rock Detection](#1-1-a)
+		* [Obstacle Detection](#1-1-b)
+	* [2. Terrain identification ](#1-2)
+		* [Data world map update](#1-2-a)
+* [Autonomous Navigation and Mapping](#part2)
+	* [1. Perception](#2-1)
+		* [Data worldmap update](#2-1-a)
+		* [Polar coordinates](#2-1-b)
+		* [Rock position](#2-1-c)
+		* [Split way detection](#2-1-d)
+	* [2. Autonomous decision making](#2-2)
+		* [Stuck Scenarios](#2-2-a)
+		* [Obstacle avoidance](#2-2-b)
+		* [Wall crawler](#2-2-c)
+		* [Smoothing the steering](#2-2-d)
+		* [Golden rock search and pick up](#2-2-e)
+* [Results](#part3)
 
-## Notebook Analysis
-#### 1. Color selection of obstacles and rock samples
-##### Rock Detection
+## Notebook Analysis <a name="part1"></a>
+#### 1. Color selection of obstacles and rock samples <a name="1-1"></a>
+##### Rock Detection <a name="1-1-a"></a>
 
 The subject suggest to use [**HSV color space**](http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html) to spot more easily the golden rocks - _nuggets_ - using both `cv2.cvtColor(img, cv2.COLOR_BGR2HSV)` and `cv2.inRange(hsv_img, lower_yellow, upper_yellow)`.
 
@@ -99,7 +99,7 @@ At this point, I stopped digging into the rgb space color, for rock detection. H
 
 **Update** : After some mapping trials, it was obvious that the golden rock detection function was spoting too many false positive. This was corrected using a more demanding lower threshold `low_hsv_thresh=(85,100,100)`.
 
-##### Obstacle Detection
+##### Obstacle Detection <a name="1-1-b"></a>
 
 For this second objective, we could considered the inverse of the navigable terrain as a quick solution. By doing so, we would have rock samples and the sky considered as obstacles but it would still work.
 
@@ -122,7 +122,7 @@ The following table gives the lower and upper threshold used for obstacle detect
 
 **Warning** : The given `color_thresh()` function has its boundaries stricly defined. Since the obstacle are dark, some parts are black `rgb=(0,0,0)`, to make sure we get them, the original code should be corrected using `<=` to use equal or superior. It can also be done for the other threshold.
 
-#### 2. Identification of navigable terrain, obstacles and rock samples 
+#### 2. Identification of navigable terrain, obstacles and rock samples <a name="1-2"></a>
 
 Once we are able to detect the ground, the rocks and the obstacles, the next goal is to map all those information into one single map. Which is what does the `process_image():` function.
 
@@ -136,7 +136,7 @@ Then I followed the basic given states :
 * Data world map update
 * Display
 
-##### Data world map update
+##### Data world map update <a name="1-2-a"></a>
 
 Here I am only going to describe the data world map update, since the other states where pretty much straight forward.
 
@@ -152,9 +152,9 @@ As said in [RoboND Rover Project Livestream](https://www.youtube.com/watch?v=-L0
 
 We can observe that the distance threshold helps a lot with the accuracy, yet, **relevant data was lost** at that price.
 
-## Autonomous Navigation and Mapping
+## Autonomous Navigation and Mapping <a name="part2"></a>
 
-#### 1. Perception
+#### 1. Perception <a name="2-1"></a>
 
 The function `perception_step(Rover)` in _perception.py_ is pretty similar to the one in the jupyter notebook. Some modifications can be noted.
 
@@ -164,7 +164,7 @@ The function `perception_step(Rover)` in _perception.py_ is pretty similar to th
 * **Rock position**
 * Detect **split** way
 
-##### Data worldmap update
+##### Data worldmap update <a name="2-1-a"></a>
 
 For a better accuracy, the map update is **weighted**. The obstacle value was chose a third of the navigable terrain, so that to overwrite a navigable terrain pixel, it will need to be spotted at least 4 times more than navigable pixels. This change was made possible thanks to the following block in the `update_rover()` function :
 
@@ -185,7 +185,7 @@ For a better accuracy, the map update is **weighted**. The obstacle value was ch
       obstacle[likely_nav] = 0
 ```
 
-##### Polar coordinates
+##### Polar coordinates <a name="2-1-b"></a>
 
 To guide the rover through the map, it needs an angle and an acceleration/speed amplitude. This can be embody with a direction vector. The function defined during the class remained unchanged. Here is a way of defining the direction vector :
 
@@ -194,7 +194,7 @@ To guide the rover through the map, it needs an angle and an acceleration/speed 
 
 The same strategy will be used to search golden rocks.
 
-##### Rock position
+##### Rock position <a name="2-1-c"></a>
 
 Because the perspective transform mostly accurate for the ground, the golden rocks are distorted on the map. The polar angle stays pretty precise, but the mean distance is false. Only the **closest position** should be considered. This also helps to deal with the situation when 2 rocks are spotted at the same time.
 
@@ -202,7 +202,7 @@ Because the perspective transform mostly accurate for the ground, the golden roc
 Rover.rck_dists = np.amin(Rover.rck_dists)
 ```
 
-##### Split way detection
+##### Split way detection <a name="2-1-d"></a>
 
 When the rover face a small obstacle, the mean angle could leads him straight to the obstacle, as shown bellow. 
 
@@ -242,7 +242,7 @@ The threshold value should be estimated more precisely, but after a single trial
 
 **Upgrade** As an unexpected behaviour, this little algorithm, seems to helps following left wall by making the rover turns right when facing a wall - _sometimes at least_.
 
-#### 2. Autonomous decision making 
+#### 2. Autonomous decision making <a name="2-2"></a>
 
 The function `decision_step(Rover)` in _decision.py_  acts quite like a state machine, to help guide the rover through its way.
 
@@ -252,7 +252,7 @@ The function `decision_step(Rover)` in _decision.py_  acts quite like a state ma
 * **Smoothing** the steering
 * Rock **search & collect**
 
-##### Stuck Scenarios
+##### Stuck Scenarios <a name="2-2-a"></a>
 
 One of the first thing we realize while in autonomous mode, is that the rover get stuck all the time. To try to answer those _uncomfortable scenarios_, the **watchdog timer** seems a good solution. At every update of the rover, the watchdog check if a determined time has elapsed since last checking. If true, it compares the last checked position with the current position. If the difference is within a close radius, therefore, it enter 'stuck mode'.
 
@@ -281,7 +281,7 @@ Once we know the rover is stuck, we cannot send him back to the classic '_stop_'
 
 The '_stuck_' mode is almost the same as the stop mode, the main difference is defined by how the rover gets out of the state. Instead of looking to navigable spaces, it **compares** its current **yaw**, with the yaw it had when it got stuck. When the rover has steered enough, it tries to go forward.
 
-##### Obstacle avoidance
+##### Obstacle avoidance <a name="2-2-b"></a>
 
 In the '_forward_ ' mode, if the mean navigable distance is low, - _which mean that there is probably a wall ahead_ - the rover switch to '_stop_ ' mode.
 
@@ -291,7 +291,7 @@ if np.mean(Rover.nav_dists) < 7.0 and Rover.vel > 0.2:
     Rover.mode = 'stop'        
 ```
 
-##### Wall crawler, _lefty I guess_...
+##### Wall crawler, _lefty I guess_... <a name="2-2-c"></a>
 
 In [Optimizing for Finding All Rocks Tip](https://classroom.udacity.com/nanodegrees/nd209/parts/c199593e-1e9a-4830-8e29-2c86f70f489e/modules/0573f9ff-2e23-48cd-87d0-af24d758348a/lessons/ef841d31-8c53-49b3-8da3-a9d1523adef0/concepts/ed33ab6f-2b67-4991-b372-ab915538b734), it was suggested to make the rover a wall [crawler](https://youtu.be/G0-0ekfyP0A?t=1m31s), and in the [RoboND Rover Project Livestream](https://www.youtube.com/watch?v=-L0Fz4UnlC8), since the left polls where higher, I chose to make it a left wall crawler.
 
@@ -318,7 +318,7 @@ else:
 If the rover is in a corridor or close to a wall, there will be less navigable space, and it will apply a smaller offset that is within the `np.clip(val + l_offset, -15, 15)` function, the rover will still be able to make right turn if necessary - _to avoid wall collision_.
 
 
-##### Smoothing the steering wheel, _not the baby driver yet_...
+##### Smoothing the steering wheel, _not the baby driver yet_... <a name="2-2-d"></a>
 
 Since the rover driving algorithm cannot yet compete with [_Ansel Elgort_](https://www.youtube.com/watch?v=l9JG2MCQGJY), while in forward mode, the steering is smoothed with a running average. The size of the running average can be set to any value - _the greater the smoother_ - and the value are dealt with like in a FIFO.
 
@@ -339,7 +339,7 @@ def queue_mean(val, ar, size):
         return np.mean(ar)
 ```
 
-##### Golden rock search and pick up
+##### Golden rock search and pick up <a name="2-2-e"></a>
 
 The main goal to achieved this project was to map the simulated area with the greatest fidelity, so I did not wanted the rover to go for a golden nugget that was too far - _with some luck they will meet again_ - and get lost in the process.
 
@@ -402,7 +402,7 @@ This _unbearable scenario_ has not yet been dealt with...
 
 ![circle hell]
 
-#### 3. Results 
+#### 3. Results <a name="part3"></a>
 
 Most of the time, the rover will be able to get a **single or two rocks within 600s**. With an average FPS between 2 and 3, I guess the rover is not reactive enough, and my rock search algorithm is not really efficient.
 
