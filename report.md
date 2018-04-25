@@ -33,7 +33,7 @@
 [circle hell]: circle_hell.gif
 [best run 1]: best_run_lucky_pick_up.png
 [best run 2]: best_run_luckiest_pick_up.png
-[image3] : example_rock1.jpg
+[image3]: example_rock1.jpg
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
