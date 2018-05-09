@@ -1,4 +1,4 @@
-![udacity logo](udacity_logo.png)
+![udacity logo](./misc/udacity_logo.png)
 # Project: Search and Sample Return
 ### Vincent FORTINEAU, R&D Engineer at ALPhANOV, Bordeaux, France
 
@@ -25,15 +25,15 @@
 [//]: # (Image References)
 
 [rgb_hsv_rock_detect]: ./misc/rock_detection_RGB_HSV.png
-[rgb_obstacle_detect]: ./miscobstacle_detection_RGB.png
-[roll_pitch]: ./miscmapping_pitch_roll_vs.jpg
+[rgb_obstacle_detect]: ./mis/cobstacle_detection_RGB.png
+[roll_pitch]: ./misc/mapping_pitch_roll_vs.jpg
 [distance_thresh]: ./miscmapping_pitch_vs_distance.jpg
-[split ways]: ./miscrover_front_obstacle.png
-[gaussian]: ./miscgaussian.png
-[circle hell]: ./misccircle_hell.gif
-[best run 1]: ./miscbest_run_lucky_pick_up.png
-[best run 2]: ./miscbest_run_luckiest_pick_up.png
-[image3]: ./miscexample_rock1.jpg
+[split ways]: ./misc/rover_front_obstacle.png
+[gaussian]: ./misc/gaussian.png
+[circle hell]: ./misc/circle_hell.gif
+[best run 1]: ./misc/best_run_lucky_pick_up.png
+[best run 2]: ./misc/best_run_luckiest_pick_up.png
+[image3]: ./misc/example_rock1.jpg
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
