@@ -25,7 +25,7 @@
 [//]: # (Image References)
 
 [rgb_hsv_rock_detect]: ./misc/rock_detection_RGB_HSV.png
-[rgb_obstacle_detect]: ./mis/cobstacle_detection_RGB.png
+[rgb_obstacle_detect]: ./misc/obstacle_detection_RGB.png
 [roll_pitch]: ./misc/mapping_pitch_roll_vs.jpg
 [distance_thresh]: ./misc/mapping_pitch_vs_distance.jpg
 [split ways]: ./misc/rover_front_obstacle.png
