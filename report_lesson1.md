@@ -24,16 +24,16 @@
 
 [//]: # (Image References)
 
-[rgb_hsv_rock_detect]: rock_detection_RGB_HSV.png
-[rgb_obstacle_detect]: obstacle_detection_RGB.png
-[roll_pitch]: mapping_pitch_roll_vs.jpg
-[distance_thresh]: mapping_pitch_vs_distance.jpg
-[split ways]: rover_front_obstacle.png
-[gaussian]: gaussian.png
-[circle hell]: circle_hell.gif
-[best run 1]: best_run_lucky_pick_up.png
-[best run 2]: best_run_luckiest_pick_up.png
-[image3]: example_rock1.jpg
+[rgb_hsv_rock_detect]: ./misc/rock_detection_RGB_HSV.png
+[rgb_obstacle_detect]: ./miscobstacle_detection_RGB.png
+[roll_pitch]: ./miscmapping_pitch_roll_vs.jpg
+[distance_thresh]: ./miscmapping_pitch_vs_distance.jpg
+[split ways]: ./miscrover_front_obstacle.png
+[gaussian]: ./miscgaussian.png
+[circle hell]: ./misccircle_hell.gif
+[best run 1]: ./miscbest_run_lucky_pick_up.png
+[best run 2]: ./miscbest_run_luckiest_pick_up.png
+[image3]: ./miscexample_rock1.jpg
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/916/view) 
 
