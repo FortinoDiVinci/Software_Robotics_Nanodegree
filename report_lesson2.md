@@ -37,7 +37,7 @@
 [go_to_trash]: ./misc/successful_drop.gif
 [result]: ./misc/4out_of5.png
 
-####[Evaluation criteria](https://review.udacity.com/#!/rubrics/972/view)  
+#### [Evaluation criteria](https://review.udacity.com/#!/rubrics/972/view)  
 
 ## Table of Contents
 
