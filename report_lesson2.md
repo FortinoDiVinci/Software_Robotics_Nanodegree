@@ -59,23 +59,24 @@
 
 _In order to control Kuka [**polyarticulated robot**](https://en.wikipedia.org/wiki/Articulated_robot), we need to manage its inverse kinematic, that is solving the joint angles, for a given position of the gripper. To do so, we first need a better understanding of its forward kinematic, an then we will dive into the inverse kinematic._
 
-<center>
+<p align = center>
 
 ![kuka arm](misc/arm-step-1.png)
 
 <sub>_Udacity, 2018_</sub>
 
-</center>
+</p>
 
 #### 1. DH Parameters <a name="1-1"></a>
 
 The [Denavit Hartenberg](https://en.wikipedia.org/wiki/Denavit–Hartenberg_parameters) (DH) representation between two joints is well summed up with the following figure (*courtesy of Udacity*).
 
-<center>
+<p align = center>
 
 ![Explanation][DH_param_expl]
 <sub>_Udacity, 2018_</sub>
-</center>
+
+</p>
 
 * α<sub>i-1</sub>, twist angle
 * a<sub>i-1</sub>, link length
@@ -84,16 +85,17 @@ The [Denavit Hartenberg](https://en.wikipedia.org/wiki/Denavit–Hartenberg_para
 
 The DH representation of the [Kuka KR210](https://www.robots.com/robots/kuka-kr-210) is shown below :
 
-<center>
+<p align = center>
 
 ![Denavit-Hartenberg representation][DH_schema]
 
 <sub>_Vincent F., 2018_</sub>
-</center>
+
+</p>
 
 To find out the value of the constants a<sub>n-1</sub>, d<sub>n</sub> and α<sub>n-1</sub>, we need to match the _Universal Robotic Description Format_ (URDF) file provided for the KR210 and our DH representation. 
 
-<center>
+<p align = center>
 
 Joint name | Parent link | Child link | x   | y   | z 
 ---        | ---         | ---        | --- | --- | ---
@@ -105,7 +107,7 @@ joint_5    | link_4      | link_5     | 0.54|  0  | 0
 joint_6    | link_5      | link_6     |0.193|  0  | 0
 gripper_joint | link_6   | gripper_link|0.11|  0  | 0
 
-</center>
+</p>
 
 In the URDF file, each joint is defined according to its parent. The reference of its parent is set to the joint center and not to the joint origin - **Eg**. *joint 1 origin is shown on the upper figure as O<sub>1</sub>, but in the URDF file, the center of the joint is different*. 
 
@@ -129,26 +131,30 @@ Links| α<sub>i-1</sub> (rad) | a<sub>i-1</sub> (m) | d<sub>i-1</sub> (m) | θ<s
 
 The homogenous transformation between two axis is constructed as a sequence of four basic transformations, two rotations and two translations using the DH parameters (_c_ : cos, _s_ : sin, _i_ : axis number) :
 
-<center>
+<p align = center>
 
 ![homogenous transform][hom_tf_mat]
 
-</center>
+</p>
 
 Since the Kuka robot has 6 rotative joints, 6 matrices will need to be multiplied to obtain the wrist pose. Moreover a translation must be done to reach the grapper, or end effector.
 
-<center>
+<p align = center>
 
 <img src="./misc/Tf-mult-wrist.png" width="250">
 <img src="./misc/Tf-mult-EE.png" width="145">
 
 ![ind_tf]    
 
-</center>
+</p>
 
 Since the final matrix is quite huge, I will only provide the first element _r_<sub>11</sub> as an indicator:
 
+<p align = center>
+
 ![1st_elem]
+
+</p>
 
 The computation has been done with the help of [sympy](http://www.sympy.org/en/index.html), doing this by hand would have been quite a labor.
 
@@ -181,7 +187,7 @@ _**θ<sub>1</sub>** = atan2(w<sub>y</sub>, w<sub>x</sub>)_
 
 θ<sub>2</sub> and θ<sub>3</sub> are trickier, the following figure showing a triangle between joint 2, 3 and 4 helps.
 
-<center>
+<p align = center>
 
 ![alt text][image2]
 
@@ -191,7 +197,7 @@ _**θ<sub>1</sub>** = atan2(w<sub>y</sub>, w<sub>x</sub>)_
 
 <sub>_Udacity, 2018, modified by Vincent F._</sub>
  
-</center> 
+</p>
  
 First we want to establish the side of the triangle, _A_, _B_, and _C_.
 
@@ -203,32 +209,32 @@ _**A**_ is the lenght of the link between joint 3 and joint 4, _**C**_ is also t
 
 To compute the angle _a_, _b_ and _c_ we can use the [law of cosines](https://en.wikipedia.org/wiki/Law_of_cosines)
 
-<center>
+<p align = center>
 
 <img src="./misc/law_of_cosines.png" width="230">
 
-</center>
+</p>
 
 With those 2 angles, we can compute θ<sub>2</sub> and θ<sub>3</sub> :
 
 * _**θ<sub>2</sub>** = π/2 - a - atan2(y, x)_
 * _**θ<sub>3</sub>** = π/2 - b - asin(a<sub>3</sub>, d<sub>4</sub>)_
 
-<center>
+<p align = center>
 
 with _x = (x<sub>wc</sub><sup>2</sup> + y<sub>wc</sub><sup>2</sup>)<sup>1/2</sup> - a_, and _y = z<sub>wc</sub> - d<sub>1</sub>_
 
-</center>
+</p>
 
 The second term in _θ<sub>3</sub>_ comes from the sag between joint 3 and 5. It cannot be observed on the pictures above, the figure below offer a better understanding of the sag.
 
-<center>
+<p align = center>
 
 ![theta3]
 
 <sub>_Vincent F., 2018_</sub>
 
-</center>
+</p>
 
 
 #### Inverse Orientation Kinematics <a name="1-3-b"></a>
@@ -449,43 +455,43 @@ _But this time efficiency switch has a price with the accuracy, numpy allows us 
 
 We can see below the different state the robot is taking to reach and grab the blue cylinder.
 
-<center>
+<p align = center>
 
 ![success_reach]
 
-</center>
+</p>
 
 If the action move to reach position and grab the target are executed too quickly, the robot pushes back the target. By waiting the stabilization of the first move, and then launching the grab action, this kind of mistake only occured at one place. Described further in the results.
 
-<center>
+<p align = center>
 
 ![failed_reach]
 
-</center>
+</p>
 
 On the following picture you can see that the robot was able to reach the same target as above without pushing it. 
 
-<center>
+<p align = center>
 
 ![correcting_fail]
 
-</center>
+</p>
 
 We can observe that even if it might not be the most complicated part, dropping the target in the trash is the longuest part of the process.
 
-<center>
+<p align = center>
 
 ![go_to_trash]
 
-</center>
+</p>
 
 Out of 5 trials, only one failed, the target that appears on the right part of the shelf. The robot keeps hitting this cylinder while processing to its grab move. An other strategy is probably needed to reach this one.
 
-<center>
+<p align = center>
 
 ![result]
 
-</center>
+</p>
 
 In real time, the total process takes between _1min45s_, and _2min30s_. In simulation time, the process seems to be twice as fast, according to the simulation time indicated in Gazebo.
 
