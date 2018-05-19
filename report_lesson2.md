@@ -23,11 +23,19 @@
 [DH_param_expl]: ./misc/denavit-hartenberg-parameter-definitions.png
 [DH_schema]: ./misc/schema_DH.png
 [hom_tf_mat]: ./misc/eq_tf_matrix.png
+[ind_tf]: ./misc/Individual_tf_matrix.png
 [TF_equ_wrist]: ./misc/Tf-mult-wrist.png
 [TF_equ_EE]: ./misc/Tf-mult-EE.png
 [1st_elem]: ./misc/1st_elem_matrix_T0_G.png
+[joints1_2_3]: ./misc/joints1_2_3_expl.png
+[theta3]: ./misc/theta3_expl.png
 [cosines]: ./misc/law_of_cosines.png
 [T3_6]: ./misc/matrix_T3_6.png
+[success_reach]: ./misc/successful_reach2.gif
+[failed_reach]: ./misc/failed_reach.gif
+[correcting_fail]: ./misc/successful_reach3.png
+[go_to_trash]: ./misc/successful_drop.gif
+[result]: ./misc/4out_of5.png
 
 ####[Evaluation criteria](https://review.udacity.com/#!/rubrics/972/view)  
 
@@ -41,6 +49,9 @@
 		* [Inverse Orientation Kinematics](#1-3-b)
 * [Project Implementation](#part2)
 	* [1. Script implementation](#2-1)
+		* [Transformation matrices](#2-1-a)
+		* [Wrist center](#2-1-b)
+		* [Inverse Kinematic](#2-1-c)	 
 	* [2. Efficiency](#2-2)
 	* [3. Results](#2-3)
 
@@ -50,7 +61,9 @@ _In order to control Kuka [**polyarticulated robot**](https://en.wikipedia.org/w
 
 <center>
 
-![udacity logo](misc/arm-step-1.png)
+![kuka arm](misc/arm-step-1.png)
+
+<sub>_Udacity, 2018_</sub>
 
 </center>
 
@@ -61,7 +74,7 @@ The [Denavit Hartenberg](https://en.wikipedia.org/wiki/Denavit–Hartenberg_para
 <center>
 
 ![Explanation][DH_param_expl]
-
+<sub>_Udacity, 2018_</sub>
 </center>
 
 * α<sub>i-1</sub>, twist angle
@@ -69,12 +82,13 @@ The [Denavit Hartenberg](https://en.wikipedia.org/wiki/Denavit–Hartenberg_para
 * d<sub>i</sub>, link offset
 * θ<sub>i</sub>, joint angle
 
-The DH representation of the [Kuka KR210](https://www.robots.com/robots/kuka-kr-210) is shown bellow :
+The DH representation of the [Kuka KR210](https://www.robots.com/robots/kuka-kr-210) is shown below :
 
 <center>
 
 ![Denavit-Hartenberg representation][DH_schema]
 
+<sub>_Vincent F., 2018_</sub>
 </center>
 
 To find out the value of the constants a<sub>n-1</sub>, d<sub>n</sub> and α<sub>n-1</sub>, we need to match the _Universal Robotic Description Format_ (URDF) file provided for the KR210 and our DH representation. 
@@ -95,7 +109,7 @@ gripper_joint | link_6   | gripper_link|0.11|  0  | 0
 
 In the URDF file, each joint is defined according to its parent. The reference of its parent is set to the joint center and not to the joint origin - **Eg**. *joint 1 origin is shown on the upper figure as O<sub>1</sub>, but in the URDF file, the center of the joint is different*. 
 
-Once, each parameter is matched, we obtain the following values :
+Once each parameter is matched, we obtain the following values :
 
 <center>
 
@@ -128,6 +142,8 @@ Since the Kuka robot has 6 rotative joints, 6 matrices will need to be multiplie
 <img src="./misc/Tf-mult-wrist.png" width="250">
 <img src="./misc/Tf-mult-EE.png" width="145">
 
+![ind_tf]    
+
 </center>
 
 Since the final matrix is quite huge, I will only provide the first element _r_<sub>11</sub> as an indicator:
@@ -138,7 +154,7 @@ The computation has been done with the help of [sympy](http://www.sympy.org/en/i
 
 #### 3. Inverse Kinematics <a name="1-3"></a>
 
-The Kuka KR210 is designed with a **spherical wrist**, which means that its last 3 joint axes intersect in a single point. This allows us to kinematically decouples the position and orientation of the end effector. 
+The Kuka KR210 is designed with a **spherical wrist**, which means that its last 3 joint axes intersect in a single point. This allows us to kinematically decouple the position and orientation of the end effector. 
 
 We can divide the inverse kinematics problem into two steps :
 
@@ -147,7 +163,7 @@ We can divide the inverse kinematics problem into two steps :
 
 #### Inverse Position Kinematics <a name="1-3-a"></a>
 
-Here we want to determine the angles of joint 1, 2 and 3 knowing the grapper position.
+Here we want to determine the angles of joints 1, 2 and 3 knowing the grapper position.
 
 First we need to transpose the grapper pose to the wrist position. Let's call _n_ the orthonormal vector of the gripper orientation along the z axis.
 
@@ -157,15 +173,25 @@ First we need to transpose the grapper pose to the wrist position. Let's call _n
 
 _p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub>_  are the gripper coordinates, _w<sub>x</sub>, w<sub>y</sub>, w<sub>z</sub>_ are the wrist coordinates and _l_ is the lenght of the gripper.
  
-Now that we can deduce the wrist position, we can determine θ<sub>1</sub>, θ<sub>2</sub> and θ<sub>3</sub> the respective angle of the joint 1, 2 and 3.
+Now that we can deduce the wrist position, we can determine θ<sub>1</sub>, θ<sub>2</sub> and θ<sub>3</sub> the respective angle of the joints 1, 2 and 3.
 
-From a **bird view** of the robot, we easily deduce θ<sub>1</sub>, it actually follows the same logic given in the inverse kinematic example in lesson 11.
+From a **bird's eyes view** of the robot, we easily deduce θ<sub>1</sub>, it actually follows the same logic given in the inverse kinematic example in lesson 11.
 
 _**θ<sub>1</sub>** = atan2(w<sub>y</sub>, w<sub>x</sub>)_
 
 θ<sub>2</sub> and θ<sub>3</sub> are trickier, the following figure showing a triangle between joint 2, 3 and 4 helps.
 
+<center>
+
 ![alt text][image2]
+
+<sub>_Udacity, 2018_</sub>
+
+![joints1_2_3]
+
+<sub>_Udacity, 2018, modified by Vincent F._</sub>
+ 
+</center> 
  
 First we want to establish the side of the triangle, _A_, _B_, and _C_.
 
@@ -194,6 +220,17 @@ with _x = (x<sub>wc</sub><sup>2</sup> + y<sub>wc</sub><sup>2</sup>)<sup>1/2</sup
 
 </center>
 
+The second term in _θ<sub>3</sub>_ comes from the sag between joint 3 and 5. It cannot be observed on the pictures above, the figure below offer a better understanding of the sag.
+
+<center>
+
+![theta3]
+
+<sub>_Vincent F., 2018_</sub>
+
+</center>
+
+
 #### Inverse Orientation Kinematics <a name="1-3-b"></a>
 
 Here we want to determine the angles of joint 4, 5 and 6.
@@ -217,7 +254,7 @@ For more details on ```atan2(y,x)``` function see [here](https://en.wikipedia.or
 
 #### 1.`IK_server.py` script implementation <a name="2-1"></a>
 
-##### Transformation matrices
+##### Transformation matrices <a name="2-1-a"></a>
 
 ```python
 def transformMatrix(alpha, a, theta, d):
@@ -256,9 +293,61 @@ T6_G = transformMatrix(alpha6, a6, q7, d7).subs(s)
 
 ```
 
+##### Wrist center <a name="2-1-b"></a>
+
+```python
+R_G = Rot_z * Rot_y * Rot_x # spherical wrist rotation 3DoF
+
+# This rotation is used to correct the difference between DH repr. and
+# the robot repr. in moveit software
+Rcomp_G = Rot_z.sub(y, np.pi) * Rot_y.sub(p, -np.pi/2)
+
+R_G = R_G * Rcomp_G
+R_G = R_G.sub({'r' : roll, 'p' : pitch, 'y' : yaw})
+
+T_G = Matrix([[px], [py], [pz]])
+
+WC = T_G - s[d7] * R_G[:,2] # Equation described in Lesson 11, 18. IK
+```
+
+##### Inverse Kinematic <a name="2-1-c"></a>
+
+Law of Cosines
+
+```python
+def cos_law(side1, side2, opside): # return cos(gamma)
+    return (side1**2 + side2**2 - opside**2) / (2 * side1 * side2)
+```
+
+Triangle ABC
+
+```python
+# sides
+A = s[d4]
+C = s[a2]
+B = sqrt((sqrt(px**2 + py**2) - a1)**2 + (pz - s[d1])**2)
+# angles
+a = acos(cos_law(B, C, A))
+b = acos(cos_law(A, C, B))
+```
+
+```python
+theta1 = atan2(WC[1], WC[0]) 
+theta2 = np.pi/2 - a - atan2(pz -s[d1], sqrt(px**2 + py**2) - s[a1])
+theta3 = np.pi/2 - b - asin(s[a3]/s[d4])
+
+theta4 = atan2(T3_6[2,2], -T3_6[0,2])
+theta5 = atan2(sqrt(T3_6[1,1]**2 + T3_6[1,0]**2), T3_6[1,2])
+theta6 = atan2(-T3_6[1,1], T3_6[1,0])
+```
+
 #### 2. Efficiency <a name="2-2"></a>
 
-Split
+**Forward Kinematic computation**
+
+For the forward kinematic, the function ```sympy.simplify()``` takes lot of ressources. To earn some time, it should be called once. _For the inverse kinematic, this part of the code should be commented since it is only necessary for non numerical computation._
+
+_Split_
 
 ```python
 T0_2 = simplify(T0_1 * T1_2)
@@ -269,13 +358,13 @@ T0_6 = simplify(T0_5 * T5_6)
 T0_G = simplify(T0_6 * T6_G)
 ```
 
-Grouped
+_Grouped_
 
 ```python
 T0_G = simplify(T0_1 * T1_2 * T2_3 * T3_4 * T4_5 * T5_6 * T6_G)
 ```
 
-Speed result
+_Speed result_
 
 ```python
 runfile('/Users/Vincent/.spyder/temp.py', wdir='/Users/Vincent/.spyder')
@@ -283,11 +372,123 @@ Split: 30.90 s
 Grouped: 15.86 s
 ```
 
+**Inverse Kinematic computation**
+
+For the computation of **T3_6** matrix, one way to earn some computation time is to use the transpose function instead of the inverse function. This is only possible if the matrix is [orthogonal](https://en.wikipedia.org/wiki/Orthogonal_matrix). The computation for inverting a matrix is indeed more complex, than switching element like in a transpose.
+
+```python
+# Inverse function
+R3_6 = R0_3.inv("LU") * R_G
+# Transpose function
+R3_6 = R0_3.T * R_G
+```
+
+```
+Inverse computation time: 0.0055s
+Transpose computation time: 0.0008s
+```
+
+**Numpy**
+
+Sympy is a really great library for non numerical computation of matrices, but for numerical calculus, it is not very efficient.
+
+Switching every element from sympy to [numpy](http://www.numpy.org) was actually the most efficient move. 
+
+Below are some of the changes that needs to be made to switch to numpy:
+
+```python
+# sympy matrix
+a = sp.Matrix([[]])
+# numpy matrix
+a = np.array([[]])
+
+# sympy symbol need to be replaced with numerical values
+a1, a2 = sp.symbols('a1:3')
+
+# trigonometric functions and sqrt need to be switch to numpy
+sp.cos(a)
+sp.atan2(y,x)
+np.cos(a)
+np.arctan2(y,x)
+
+# column extraction sp
+R_G[:,2]
+# column extraction np
+R_G[:,[2]]
+
+```
+In the end the time earned is non negligeable.
+
+With Sympy:
+
+```
+robond@udacity:~/catkin_ws/src/RoboND-Kinematics-Project$ python IK_debug.py
+
+Total run time to calculate joint angles from pose is 0.6599 seconds
+Wrist error for x position is: 0.00000046
+Wrist error for y position is: 0.00000032
+Wrist error for z position is: 0.00000545
+Overall wrist offset is: 0.00000548 units
+```
+With Numpy:
+
+```
+robond@udacity:~/catkin_ws/src/RoboND-Kinematics-Project$ python IK_debug.py
+
+Total run time to calculate joint angles from pose is 0.0005 seconds
+Wrist error for x position is: 0.26684000
+Wrist error for y position is: 0.01667000
+Wrist error for z position is: 0.14257000
+Overall wrist offset is: 0.30299782 units
+
+```
+
+_But this time efficiency switch has a price with the accuracy, numpy allows us to be 1000 times quicker but with 10000 times less accuracy._
+
 #### 3. Results <a name="2-3"></a>
-Here I'll talk about the code, what techniques I used, what worked and why, where the implementation might fail and how I might improve it if I were going to pursue this project further.  
+
+We can see below the different state the robot is taking to reach and grab the blue cylinder.
+
+<center>
+
+![success_reach]
+
+</center>
+
+If the action move to reach position and grab the target are executed too quickly, the robot pushes back the target. By waiting the stabilization of the first move, and then launching the grab action, this kind of mistake only occured at one place. Described further in the results.
+
+<center>
+
+![failed_reach]
+
+</center>
+
+On the following picture you can see that the robot was able to reach the same target as above without pushing it. 
+
+<center>
+
+![correcting_fail]
+
+</center>
+
+We can observe that even if it might not be the most complicated part, dropping the target in the trash is the longuest part of the process.
+
+<center>
+
+![go_to_trash]
+
+</center>
+
+Out of 5 trials, only one failed, the target that appears on the right part of the shelf. The robot keeps hitting this cylinder while processing to its grab move. An other strategy is probably needed to reach this one.
+
+<center>
+
+![result]
+
+</center>
+
+In real time, the total process takes between _1min45s_, and _2min30s_. In simulation time, the process seems to be twice as fast, according to the simulation time indicated in Gazebo.
 
 
-And just for fun, another example image:
-![alt text][image3]
 
-
+To reach better performances, one idea could be to compute several solutions for all joints angle, this would allow the program to choose between the different options the one that minimize the movement.
