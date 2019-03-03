@@ -20,7 +20,11 @@
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/1365/view) 
 
-<center>**Abstract**</center>
+<center> 
+
+**Abstract** 
+
+</center>
 
 _This report presents 2 simple robots created in a simulated environment. An **Adaptative Monte Carlo Localization** (AMCL) algorithm was implemented in those robot using **ROS** packages to help them navigate in a maze like map. The parameters and configurations of the AMCL package are studied here._ 
 
@@ -55,7 +59,7 @@ Most of this sensors cannot give directly the position of the robot in its envir
 
 Some sensors are very useful but require a **known environmment**, to be used for localization. 
 
-<center> <img src="./misc/camtoy-robot.jpg" width="400">
+<center> <img src="./misc/Camtoy-robot.jpg" width="400">
 
 <sub>(C) Laïka, mobile robot for dogs entertainment,  developped by Camtoy </sub></center>
 
