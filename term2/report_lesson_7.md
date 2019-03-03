@@ -21,9 +21,13 @@
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/1441/view) 
 
-<center>**Abstract**</center>
+<center>
+	
+**Abstract**
+	
+</center>
 
-_This report presents a simulateous localization and mapping (SLAM) ROS package simulated in 2 different Gazebo environments. The RTAB-Map package allows to create a 2D occupancy grid and a 3D octomap, with a robot having few sensors, while moving through an artifical maps. A basic 2 wheeled robot is used to conduct the experiment. _ 
+_This report presents a simulateous localization and mapping (SLAM) ROS package simulated in 2 different Gazebo environments. The RTAB-Map package allows to create a 2D occupancy grid and a 3D octomap, with a robot having few sensors, while moving through an artifical maps. A basic 2 wheeled robot is used to conduct the experiment._ 
 
 ## Table of Contents
 
