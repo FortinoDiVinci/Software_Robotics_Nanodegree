@@ -41,9 +41,9 @@
 
 The images provided are pictures of candy boxes, bottles and empty conveyour belt for real time sorting.
 
-The photos are in an ** 8bit color depth**, and **500x500 px** dimensions.
+The photos are in an **8bit color depth**, and **500x500 px** dimensions.
 
-<center> ![Example](./misc/data-p1-digits.jpg) 
+<center> <img src="./misc/data-p1-digits.jpg"> 
 
 <sub>(C) Udacity </sub></center>
 
