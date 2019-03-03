@@ -24,7 +24,10 @@
 
 #### [Evaluation criteria](https://review.udacity.com/#!/rubrics/1439/view) 
 
-<center>**Abstract**</center>
+<center>
+
+**Abstract**
+</center>
 
 _This report presents an example of Deep Reinforcement Learning (DRL) implementation using **Deep Q-Network** (DQN) algorithm. The goal is to teach a robotic arm with 2 degrees of freedom (DoF), to reach a target object using proper reward functions. The robot is learning in a simulated environment, Gazebo._ 
 
@@ -35,7 +38,7 @@ _This report presents an example of Deep Reinforcement Learning (DRL) implementa
 	* [2. Background](#1-2)
 	* [3. Reward functions and configurations](#1-3)
 		* [Rewards](#1-3-a)
-		* [Hyperparameters] (#1-3-b)
+		* [Hyperparameters](#1-3-b)
 	* [4. Results](#1-4)
 	* [5. Discussion](#1-5)
 
