@@ -46,13 +46,13 @@
 		* [a. Encoder](#1-3-a)
 		* [b. Decoder](#1-3-b)
 		* [c. Model](#1-3-c) 
-* [Hyper parameters] (#part2)
+* [Hyper parameters](#part2)
 	* [1. Learning rate](#2-1)
 	* [2. Batch size](#2-2)
 	* [3. Epochs](#2-3)
 	* [4. Workers](#2-4)
 	* [5. Test](#2-5)
-* [Scoring and simulation] (#part3)
+* [Scoring and simulation](#part3)
 	* [1. Scores](#3-1)
 	* [2. Simulation](#3-2)
 
@@ -463,24 +463,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
     
-    <img src="misc/train_curve_1.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.05</td></tr>
+<img src="misc/train_curve_1.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.05</td></tr>
     
-    <tr><td align="left">Batch size</td>      <td align="center">50</td></tr>
+<tr><td align="left">Batch size</td>      <td align="center">50</td></tr>
     
-    <tr><td align="left">Nb epochs</td>      <td align="center">30</td></tr>
+<tr><td align="left">Nb epochs</td>      <td align="center">30</td></tr>
     
-    <tr><td align="left">Workers</td>         <td align="center">4</td></tr>
+<tr><td align="left">Workers</td>         <td align="center">4</td></tr>
     
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Scores</th><th align="center">Values</th>
 
-    <tr><td align="left">Train loss</td>      <td align="center">0.020</td></tr>
+<tr><td align="left">Train loss</td>      <td align="center">0.020</td></tr>
     
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.046</td></tr>
+<tr><td align="left">Validat. loss</td>        <td align="center">0.046</td></tr>
     
-    <tr><td align="left">Final score</td>     <td align="center">0.412</td></tr>
+<tr><td align="left">Final score</td>     <td align="center">0.412</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">16h47</td></tr>
     
@@ -489,24 +489,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
-    
-    <img src="misc/train_curve_2.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.01</td></tr>
-    
-    <tr><td align="left">Batch size</td>      <td align="center">20</td></tr>
-    
-    <tr><td align="left">Nb epochs</td>      <td align="center">30</td></tr>
-    
-    <tr><td align="left">Workers</td>         <td align="center">4</td></tr>
-    
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
 
-    <tr><td align="left">Train loss</td>      <td align="center">0.0113 </td></tr>
-    
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.0206</td></tr>
-    
-    <tr><td align="left">Final score</td>     <td align="center">0.410</td></tr>
+<img src="misc/train_curve_2.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.01</td></tr>
+
+<tr><td align="left">Batch size</td>      <td align="center">20</td></tr>
+
+<tr><td align="left">Nb epochs</td>      <td align="center">30</td></tr>
+
+<tr><td align="left">Workers</td>         <td align="center">4</td></tr>
+
+<tr><th align="center">Scores</th><th align="center">Values</th>
+
+<tr><td align="left">Train loss</td>      <td align="center">0.0113 </td></tr>
+
+<tr><td align="left">Validat. loss</td>        <td align="center">0.0206</td></tr>
+
+<tr><td align="left">Final score</td>     <td align="center">0.410</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">12h07</td></tr>
     
@@ -516,24 +516,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
-    
-    <img src="misc/training_curve_3.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.0005</td></tr>
-    
-    <tr><td align="left">Batch size</td>      <td align="center">1000</td></tr>
-    
-    <tr><td align="left">Nb epochs</td>      <td align="center">100</td></tr>
-    
-    <tr><td align="left">Workers</td>         <td align="center">40</td></tr>
-    
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
 
-    <tr><td align="left">Train. loss</td>      <td align="center">0.0256</td></tr>
-    
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.0374</td></tr>
-    
-    <tr><td align="left">Final score</td>     <td align="center">0.295</td></tr>
+<img src="misc/training_curve_3.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.0005</td></tr>
+
+<tr><td align="left">Batch size</td>      <td align="center">1000</td></tr>
+
+<tr><td align="left">Nb epochs</td>      <td align="center">100</td></tr>
+
+<tr><td align="left">Workers</td>         <td align="center">40</td></tr>
+
+<tr><th align="center">Scores</th><th align="center">Values</th>
+
+<tr><td align="left">Train. loss</td>      <td align="center">0.0256</td></tr>
+
+<tr><td align="left">Validat. loss</td>        <td align="center">0.0374</td></tr>
+
+<tr><td align="left">Final score</td>     <td align="center">0.295</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">19h34</td></tr>
     
@@ -541,24 +541,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
-    
-    <img src="misc/training_curve_4.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.005</td></tr>
-    
-    <tr><td align="left">Batch size</td>      <td align="center">1000</td></tr>
-    
-    <tr><td align="left">Nb epochs</td>      <td align="center">80</td></tr>
-    
-    <tr><td align="left">Workers</td>         <td align="center">40</td></tr>
-    
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
 
-    <tr><td align="left">Train. loss</td>      <td align="center">0.0278</td></tr>
-    
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.0401</td></tr>
-    
-    <tr><td align="left">Final score</td>     <td align="center">0.243</td></tr>
+<img src="misc/training_curve_4.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.005</td></tr>
+
+<tr><td align="left">Batch size</td>      <td align="center">1000</td></tr>
+
+<tr><td align="left">Nb epochs</td>      <td align="center">80</td></tr>
+
+<tr><td align="left">Workers</td>         <td align="center">40</td></tr>
+
+<tr><th align="center">Scores</th><th align="center">Values</th>
+
+<tr><td align="left">Train. loss</td>      <td align="center">0.0278</td></tr>
+
+<tr><td align="left">Validat. loss</td>        <td align="center">0.0401</td></tr>
+
+<tr><td align="left">Final score</td>     <td align="center">0.243</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">15h50</td></tr>
     
@@ -566,24 +566,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
-    
-    <img src="misc/training_curve_5.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.005</td></tr>
-    
-    <tr><td align="left">Batch size</td>      <td align="center">200</td></tr>
-    
-    <tr><td align="left">Nb epochs</td>      <td align="center">50</td></tr>
-    
-    <tr><td align="left">Workers</td>         <td align="center">40</td></tr>
-    
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
 
-    <tr><td align="left">Train. loss</td>      <td align="center">0.0200</td></tr>
-    
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.0281</td></tr>
-    
-    <tr><td align="left">Final score</td>     <td align="center">0.347</td></tr>
+<img src="misc/training_curve_5.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.005</td></tr>
+
+<tr><td align="left">Batch size</td>      <td align="center">200</td></tr>
+
+<tr><td align="left">Nb epochs</td>      <td align="center">50</td></tr>
+
+<tr><td align="left">Workers</td>         <td align="center">40</td></tr>
+
+<tr><th align="center">Scores</th><th align="center">Values</th>
+
+<tr><td align="left">Train. loss</td>      <td align="center">0.0200</td></tr>
+
+<tr><td align="left">Validat. loss</td>        <td align="center">0.0281</td></tr>
+
+<tr><td align="left">Final score</td>     <td align="center">0.347</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">8h30</td></tr>
     
@@ -591,24 +591,24 @@ On my personal computer, the number of worker is limited to 4, since I only have
 
 <table><tbody>
 
-    <tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
-    
-    <img src="misc/training_curve_6.png" width="350"></td></tr>
-    <tr><td align="left">Learning rate</td>   <td align="center">0.001</td></tr>
-    
-    <tr><td align="left">Batch size</td>      <td align="center">200</td></tr>
-    
-    <tr><td align="left">Nb epochs</td>      <td align="center">80</td></tr>
-    
-    <tr><td align="left">Workers</td>         <td align="center">40</td></tr>
-    
-    <tr><th align="center">Scores</th><th align="center">Values</th>
+<tr><th align="center">Parameters</th><th align="center">Values</th><td align="center" rowspan="10">
 
-    <tr><td align="left">Train. loss</td>      <td align="center">0.0129</td></tr>
-    
-    <tr><td align="left">Validat. loss</td>        <td align="center">0.0382</td></tr>
-    
-    <tr><td align="left">Final score</td>     <td align="center">0.369</td></tr>
+<img src="misc/training_curve_6.png" width="350"></td></tr>
+<tr><td align="left">Learning rate</td>   <td align="center">0.001</td></tr>
+
+<tr><td align="left">Batch size</td>      <td align="center">200</td></tr>
+
+<tr><td align="left">Nb epochs</td>      <td align="center">80</td></tr>
+
+<tr><td align="left">Workers</td>         <td align="center">40</td></tr>
+
+<tr><th align="center">Scores</th><th align="center">Values</th>
+
+<tr><td align="left">Train. loss</td>      <td align="center">0.0129</td></tr>
+
+<tr><td align="left">Validat. loss</td>        <td align="center">0.0382</td></tr>
+
+<tr><td align="left">Final score</td>     <td align="center">0.369</td></tr>
     
 <tr><td align="left">Training durat.</td>     <td align="center">13h39</td></tr>
     
