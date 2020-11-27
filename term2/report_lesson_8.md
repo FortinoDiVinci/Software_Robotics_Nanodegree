@@ -185,7 +185,7 @@ For both objective, results over **95%** were reached eventually. For the first 
 
 <sub> 80% overall success after 230 runs for the 2<sup>nd</sup> objective, Vincent F. (C)</center>
 
-The following graph presents the results of a learning session for the second objective. The percentage of success is presented with a moving average on 50 values. We distinguish 3 phases, the exploration phase, between the 1<sup>st</sup> and the 45<sup>th</sup> run were the robot is still having some random behaviour. The second phase up until the 100<sup>th</sup> run is a transition (_only due to the wy the percentage of success is measured_) between the exploration phase and the exploitation one at which a plateau is reached with very few progress.
+The following graph presents the results of a learning session for the second objective. The percentage of success is presented with a moving average on 50 values. We distinguish 3 phases, the exploration phase, between the 1<sup>st</sup> and the 45<sup>th</sup> run were the robot is still having some random behaviour. The second phase up until the 100<sup>th</sup> run is a transition (_due to the moving average ?_) between the exploration phase and the exploitation one at which a plateau is reached with very few progress.
 
 _It would be insteresting to try to corralate this graph with the evolution of the parameter ε, that is decaying._
 
@@ -202,7 +202,7 @@ _It would be insteresting to try to corralate this graph with the evolution of t
 |0.001        | 0.402        |   0.288     |
 
 
-<sub>Table 3: Result according to the learning rate, 5 trails of 100 runs were conducted for each case</sub> <a name="table-3"></a>
+<sub>Table 3: Result according to the learning rate, 5 trials of 100 runs were conducted for each case</sub> <a name="table-3"></a>
 
 </center>
 
@@ -216,6 +216,6 @@ For complex tasks, it can be usefull and necessary to increase gradually the com
 
 ## Conclusion <a name="part3"></a>
 
-The artificial intelligence brought by reinforcement learning has been emerging in the past years. New strategies are being proposed to increase the performances of RL and allow robots and algorithms to learn more and more complicated tasks.
+The artificial intelligence brought by reinforcement learning has been emerging in the past years. New strategies are being proposed to increase the performances of RL and allow robot and algorithms to learn more and more complicated tasks.
 
 It would be interesting to try implementing a curriculum learning algorithm in this project, replacing the studied robot with a 3, 4, even 7 DoF robots and a moving target.
